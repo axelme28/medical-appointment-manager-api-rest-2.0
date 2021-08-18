@@ -13,15 +13,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.init.hospital.dao.DCitaDao;
 import com.init.hospital.dao.PacienteDao;
+import com.init.hospital.entitys.DCita;
 import com.init.hospital.entitys.Paciente;
+import com.init.hospital.service.CitaService;
+import com.init.hospital.service.PacienteService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/")
 public class HospitalRest {
 	@Autowired
+	private PacienteService pacienteservice;
 	private PacienteDao Pacientedao;
+	@Autowired
+	private CitaService citaservice;
 	
 	//Servicio para loggin 
 	@CrossOrigin(origins = "http://localhost:3000")
@@ -37,9 +44,32 @@ public class HospitalRest {
 	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/registro")
 	public ResponseEntity<Paciente> register (@RequestBody Paciente paciente){
-		Paciente createPaciente = Pacientedao.save(paciente);
+		Paciente createPaciente = pacienteservice.registrarpaciente(paciente);
 		return ResponseEntity.ok(createPaciente);
-		
+			
+	}
+	//Servicio para crear cita
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/crearcita")
+	public ResponseEntity<DCita> crearcita(@RequestBody DCita cita){
+		DCita nuevacita = citaservice.crearcita(cita);
+		return ResponseEntity.ok(nuevacita);
 		
 	}
+	
+	//Servicio para consultar cita
+	
+	@CrossOrigin(origins = "http://localhost:3000")
+	@GetMapping("/consultarcita")
+	public ResponseEntity<Optional<DCita>> consultarcita(@RequestBody Long id){
+		Optional<DCita> buscarcita = citaservice.consultarcita(id);
+		if(buscarcita.isPresent()) {
+			return ResponseEntity.ok(buscarcita);
+				
+		}else
+		return null;
+		
+	}
+	
 }

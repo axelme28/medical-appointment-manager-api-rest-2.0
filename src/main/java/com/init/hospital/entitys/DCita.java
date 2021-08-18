@@ -3,10 +3,13 @@ package com.init.hospital.entitys;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Dcita")
@@ -25,16 +28,18 @@ public class DCita {
 	}
 	
 	//---Foreign keys ---
-	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Consultorio.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Consultorio.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_consultorio",referencedColumnName = "id_consultorio")
 	private Consultorio id_consultorio;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=MCita.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=MCita.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cita",referencedColumnName = "id_cita")
 	private MCita id_cita;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Medico.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Medico.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_medico",referencedColumnName = "id_medico")
 	private Medico id_medico;
 	

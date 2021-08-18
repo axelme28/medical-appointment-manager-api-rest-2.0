@@ -5,11 +5,14 @@ import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -45,32 +48,39 @@ public class Paciente {
 	private String password;
 	
 	//---Foreign keys ---
-
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Genero.class)
+	
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Genero.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_genero",referencedColumnName = "id_genero")
 	private Genero id_genero;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=TipoSangre.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=TipoSangre.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_tipo_sangre",referencedColumnName = "id_tipoSangre")
 	private TipoSangre id_tipoSangre;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Ocupacion.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Ocupacion.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_ocupacion", referencedColumnName = "id_ocupacion")
 	private Ocupacion id_ocupacion;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=EstadoCivil.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=EstadoCivil.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estadoCivil", referencedColumnName = "id_estadoCivil")
 	private EstadoCivil id_estadoCivil;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Alergia.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Alergia.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_alergia", referencedColumnName = "id_alergia")
 	private Alergia id_alergia;
 	
-	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Direccion.class)
+	@JsonIgnore
+	@ManyToOne(cascade=CascadeType.ALL, targetEntity=Direccion.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_direccion", referencedColumnName = "id_direccion")
 	private Direccion id_direcion;
 	
-	@OneToOne(cascade=CascadeType.ALL, targetEntity=EExpedienteClinico.class)
+	@JsonIgnore
+	@OneToOne(cascade=CascadeType.ALL, targetEntity=EExpedienteClinico.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "mnss_paciente", referencedColumnName = "mnss_paciente")
 	private EExpedienteClinico mnss_paciente;
 	
