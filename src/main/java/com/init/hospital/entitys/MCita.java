@@ -5,6 +5,8 @@ import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +16,7 @@ public class MCita {
 	
 	@Id
 	@Column(name = "id_cita")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_cita;
 	
 	@Column(name = "fecha_cita")

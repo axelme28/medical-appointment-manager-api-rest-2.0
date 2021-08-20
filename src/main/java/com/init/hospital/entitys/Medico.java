@@ -3,6 +3,8 @@ package com.init.hospital.entitys;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,6 +16,7 @@ public class Medico {
 	
 	@Id
 	@Column(name = "id_medico")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_medico;
 	
 	@Column(name = "Medico")
