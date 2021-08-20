@@ -1,6 +1,8 @@
 package com.init.hospital.entitys;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Table;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ public class TipoConsultorio {
 	
 	@Id
 	@Column(name = "id_tipoconsultorio")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_tipoconsultorio;
 
 	public Long getId_tipoconsultorio() {

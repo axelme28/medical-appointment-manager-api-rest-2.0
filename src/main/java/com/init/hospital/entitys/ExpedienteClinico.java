@@ -2,6 +2,8 @@ package com.init.hospital.entitys;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class ExpedienteClinico {
 	
 	@Id
 	@Column(name = "id_expedienteclinico")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_expedienteclinico;
 	
 	@Column(name = "pregunta_1")

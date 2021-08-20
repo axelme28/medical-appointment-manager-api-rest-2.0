@@ -13,7 +13,7 @@ public class EstadoCivil {
 	private Long id_estadoCivil;
 	
 	@Column(name = "estado_civil")
-	private boolean estado_civil;
+	private String estado_civil;
 	
 
 }
